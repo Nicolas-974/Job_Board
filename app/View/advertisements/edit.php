@@ -34,4 +34,4 @@
     <button type="submit">Enregistrer les modifications</button>
 </form>
 
-<p><a href="index.php">← Retour à la liste</a></p>
+<p><a href="admin.php?section=offers">← Retour à la liste</a></p>

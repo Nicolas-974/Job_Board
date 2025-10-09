@@ -1,36 +1,57 @@
-<h1>Créer une nouvelle annonce</h1>
+<h2 class="mb-4">Créer une nouvelle annonce</h2>
 
-<form action="index.php?action=store" method="post">
-    <label for="title">Titre :</label><br>
-    <input type="text" id="title" name="title" required><br><br>
+<form action="admin.php?section=offers&action=store" method="post" class="row g-3">
 
-    <label for="company_id">Entreprise :</label><br>
-    <select id="company_id" name="company_id" required>
-        <?php foreach ($companies as $company): ?>
-            <option value="<?= $company['company_id'] ?>">
-                <?= htmlspecialchars($company['name']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br><br>
+  <!-- Titre -->
+  <div class="col-md-6">
+    <label for="title" class="form-label">Titre :</label>
+    <input type="text" id="title" name="title" class="form-control" required>
+  </div>
 
-    <label for="location">Lieu :</label><br>
-    <input type="text" id="location" name="location" required><br><br>
+  <!-- Entreprise -->
+  <div class="col-md-6">
+    <label for="company_id" class="form-label">Entreprise :</label>
+    <select id="company_id" name="company_id" class="form-select" required>
+      <option value="">-- Sélectionnez une entreprise --</option>
+      <?php foreach ($companies as $company): ?>
+        <option value="<?= $company['company_id'] ?>">
+          <?= htmlspecialchars($company['name']) ?>
+        </option>
+      <?php endforeach; ?>
+    </select>
+  </div>
 
-    <label for="contract_type">Type de contrat :</label><br>
-    <select id="contract_type" name="contract_type" required>
-        <option value="CDI">CDI</option>
-        <option value="CDD">CDD</option>
-        <option value="Stage">Stage</option>
-        <option value="Freelance">Freelance</option>
-    </select><br><br>
+  <!-- Lieu -->
+  <div class="col-md-6">
+    <label for="location" class="form-label">Lieu :</label>
+    <input type="text" id="location" name="location" class="form-control" required>
+  </div>
 
-    <label for="salary">Salaire :</label><br>
-    <input type="number" id="salary" name="salary" required><br><br>
+  <!-- Type de contrat -->
+  <div class="col-md-6">
+    <label for="contract_type" class="form-label">Type de contrat :</label>
+    <select id="contract_type" name="contract_type" class="form-select" required>
+      <option value="CDI">CDI</option>
+      <option value="CDD">CDD</option>
+      <option value="Stage">Stage</option>
+      <option value="Freelance">Freelance</option>
+    </select>
+  </div>
 
-    <label for="description">Description :</label><br>
-    <textarea id="description" name="description" rows="5" cols="40" required></textarea><br><br>
+  <!-- Salaire -->
+  <div class="col-md-6">
+    <label for="salary" class="form-label">Salaire (€) :</label>
+    <input type="number" id="salary" name="salary" class="form-control" min="0" step="100" required>
+  </div>
 
-    <button type="submit">Envoyer</button>
+  <!-- Description -->
+  <div class="col-12">
+    <label for="description" class="form-label">Description :</label>
+    <textarea id="description" name="description" rows="5" class="form-control" required></textarea>
+  </div>
+
+  <!-- Boutons -->
+  <div class="col-12 d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+  </div>
 </form>
-
-<p><a href="index.php">← Retour à la liste</a></p>

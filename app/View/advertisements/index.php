@@ -1,32 +1,49 @@
-<h1>Liste des annonces</h1>
+<h1 id = "offersTitle" class="mb-4">Liste des annonces</h1>
 
-<p><a href="index.php?action=create">➕ Créer une nouvelle annonce</a></p>
+<!-- Bouton qui bascule l'affichage -->
+<p>
+  <button class="btn btn-success mb-3" id="btnToggleCreate">➕ Créer une nouvelle annonce</button>
+</p>
 
-<table border="1" cellpadding="8" cellspacing="0">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Titre</th>
-            <th>Entreprise</th>
-            <th>Lieu</th>
-            <th>Contrat</th>
-            <th>Salaire</th>
-        </tr>
+<!-- Formulaire de création (caché par défaut) -->
+<div id="formCreate" style="display: none;">
+  <?php include __DIR__ . '/create.php'; ?>
+</div>
+
+<!-- Liste des offres (visible par défaut) -->
+<div id="offersList">
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Entreprise</th>
+        <th>Lieu</th>
+        <th>Contrat</th>
+        <th>Salaire</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-        <?php foreach ($ads as $ad): ?>
-            <tr>
-                <td><?= htmlspecialchars($ad['ad_id']) ?></td>
-                <td><?= htmlspecialchars($ad['title']) ?></td>
-                <td><?= htmlspecialchars($ad['company_name']) ?></td>
-                <td><?= htmlspecialchars($ad['location']) ?></td>
-                <td><?= htmlspecialchars($ad['contract_type']) ?></td>
-                <td><?= htmlspecialchars($ad['salary']) ?></td>
-                <td><a href="index.php?action=show&id=<?= $ad['ad_id'] ?>">Voir détail</a></td>
-                <td><a href="index.php?action=edit&id=<?= $ad['ad_id'] ?>">Modifier</a></td>
-                <td><a href="index.php?action=delete&id=<?= $ad['ad_id'] ?>" onclick="return confirm('Voulez-vous vraiment supprimer cette annonce ?');">Supprimer</a></td>
-            </tr>
-        <?php endforeach; ?>
+      <?php foreach ($ads as $ad): ?>
+        <tr>
+          <td><?= htmlspecialchars($ad['ad_id']) ?></td>
+          <td><?= htmlspecialchars($ad['title']) ?></td>
+          <td><?= htmlspecialchars($ad['company_name']) ?></td>
+          <td><?= htmlspecialchars($ad['location']) ?></td>
+          <td><?= htmlspecialchars($ad['contract_type']) ?></td>
+          <td><?= htmlspecialchars($ad['salary']) ?> €</td>
+          <td>
+            <a href="admin.php?section=offers&action=show&id=<?= $ad['ad_id'] ?>" class="btn btn-sm btn-info">Voir</a>
+            <a href="admin.php?section=offers&action=edit&id=<?= $ad['ad_id'] ?>" class="btn btn-sm btn-warning">Modifier</a>
+            <a href="admin.php?section=offers&action=delete&id=<?= $ad['ad_id'] ?>"
+               class="btn btn-sm btn-danger"
+               onclick="return confirm('Voulez-vous vraiment supprimer cette annonce ?');">
+               Supprimer
+            </a>
+          </td>
+        </tr>
+      <?php endforeach; ?>
     </tbody>
-</table>
-
+  </table>
+</div>

@@ -18,6 +18,10 @@ class AdvertisementController
         // 1. On récupère les annonces via le modèle
         $ads = $this->model->all();
 
+        // 2. On récupère aussi les entreprises pour le formulaire
+        $companies = $this->model->getCompanies();
+
+
         // 2. On charge la vue correspondante
         include __DIR__ . '/../View/advertisements/index.php';
     }
@@ -54,7 +58,7 @@ class AdvertisementController
         ]);
 
         // 3. On redirige vers la liste des annonces
-        header('Location: index.php');
+        header('Location: admin.php?section=offers');
         exit;
     }
 
@@ -113,7 +117,7 @@ class AdvertisementController
         ]);
 
         // 3. Rediriger vers la liste
-        header('Location: index.php');
+        header('Location: admin.php?section=offers');
         exit;
     }
 
@@ -122,7 +126,7 @@ class AdvertisementController
         $this->model->delete($id);
 
         // Après suppression, on revient à la liste
-        header('Location: index.php');
+        header('Location: admin.php?section=offers');
         exit;
     }
 

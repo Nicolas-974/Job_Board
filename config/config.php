@@ -2,9 +2,9 @@
     //Infos pour se co
 
     $db_host = "mysql-jobboard.alwaysdata.net";         //URL de la bdd
-    $db_name = "jobboard_bdd";      //bdd que l'on va travailler
-    $db_user = "jobboard";              //User MySQL
-    $db_pass = "job_board974";                  //mDp
+    $db_name = "jobboard_bdd";                          //bdd que l'on va travailler
+    $db_user = "jobboard";                              //User MySQL
+    $db_pass = "job_board974";                          //mDp
 
     //Création du PDO
 

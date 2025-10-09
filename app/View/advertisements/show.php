@@ -8,4 +8,4 @@
 <p><strong>Salaire :</strong> <?= htmlspecialchars($ad['salary']) ?></p>
 <p><strong>Description :</strong> <?= htmlspecialchars($ad['description']) ?></p>
 
-<p><a href="index.php">← Retour à la liste</a></p>
+<p><a href="admin.php?section=offers">← Retour à la liste</a></p>
