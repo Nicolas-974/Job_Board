@@ -5,6 +5,8 @@ require_once __DIR__ . '/config/config.php';
 // Import du contrôleur des annonces
 require_once __DIR__ . '/app/Controller/AdvertisementController.php';
 require_once __DIR__ . '/app/Controller/UserController.php';
+require_once __DIR__ . '/app/Controller/CompanyController.php';
+
 
 
 // On récupère la section demandée dans l’URL (ex: admin.php?section=offers)
@@ -64,6 +66,7 @@ $action = $_GET['action'] ?? null;
 
   <!-- Contenu principal -->
   <div class="container-fluid">
+
     <div class="row">
       
       <!-- Sidebar -->
@@ -78,65 +81,113 @@ $action = $_GET['action'] ?? null;
       <main class="col-md-9 col-lg-10">
         <?php
         
-            if ($section === 'offers') {
-                $controller = new AdvertisementController($pdo);
+          //Sections Offres
+          if ($section === 'offers') {
+              $controller = new AdvertisementController($pdo);
 
-                // ⚠️ On traite les actions qui ne doivent pas afficher de HTML
-                if ($action === 'store') {
-                    $controller->store();
-                    exit;
-                } elseif ($action === 'update') {
-                    $controller->update((int)$_GET['id']);
-                    exit;
-                } elseif ($action === 'delete') {
-                    $controller->delete((int)$_GET['id']);
-                    exit;
-                }
-
-                // ⚠️ Les actions qui affichent une vue
-                if ($action === 'edit') {
-                    $controller->edit((int)$_GET['id']);
-                } elseif ($action === 'show') {
-                    $controller->show((int)$_GET['id']);
-                } else {
-                    $controller->index(); // par défaut, on affiche la liste + formulaire
-                }
-            }
-
-            
-            elseif ($section === 'users') {
-              $controller = new UserController($pdo);
-
+              // ⚠️ On traite les actions qui ne doivent pas afficher de HTML
               if ($action === 'store') {
-                  $controller->store();
-                  exit;
-              } elseif ($action === 'update') {
-                  $controller->update((int)$_GET['id']); // ✅ manquant
-                  exit;
-              } elseif ($action === 'edit') {
-                  $controller->edit((int)$_GET['id']); // ✅ manquant
-              } elseif ($action === 'show') {
-                  $controller->show((int)$_GET['id']);
-              } elseif ($action === 'delete') {
-                  $controller->delete((int)$_GET['id']);
-                  exit;
-              } else {
-                  $controller->index(); // affiche la liste + formulaire (caché par défaut)
+                $controller->store();
+                exit;
+              } 
+              
+              elseif ($action === 'update') {
+                $controller->update((int)$_GET['id']);
+                exit;
+              } 
+              
+              elseif ($action === 'delete') {
+                $controller->delete((int)$_GET['id']);
+                exit;
               }
-            }
+
+              // ⚠️ Les actions qui affichent une vue
+              if ($action === 'edit') {
+                $controller->edit((int)$_GET['id']);
+              } 
+              
+              elseif ($action === 'show') {
+                $controller->show((int)$_GET['id']);
+              } 
+              
+              else {
+                $controller->index(); // par défaut, on affiche la liste + formulaire
+              }
+          }
+
+          //Sections Utilisateurs
+          elseif ($section === 'users') {
+            $controller = new UserController($pdo);
+
+            if ($action === 'store') {
+              $controller->store();
+              exit;
+            } 
             
-            elseif ($section === 'companies') {
-                echo "<h2>Liste des entreprises (à venir)</h2>";
+            elseif ($action === 'update') {
+              $controller->update((int)$_GET['id']); // ✅ manquant
+              exit;
+            } 
+            
+            elseif ($action === 'edit') {
+              $controller->edit((int)$_GET['id']); // ✅ manquant
+            } 
+            
+            elseif ($action === 'show') {
+              $controller->show((int)$_GET['id']);
+            } 
+            
+            elseif ($action === 'delete') {
+              $controller->delete((int)$_GET['id']);
+              exit;
             } 
             
             else {
-                echo "<h2>Bienvenue sur le tableau de bord</h2>";
-                echo "<p>Ici, tu pourras gérer les utilisateurs, les offres et les entreprises.</p>";
+              $controller->index(); // affiche la liste + formulaire (caché par défaut)
             }
+          }
+            
+          //Sections Entreprises
+          elseif ($section === 'companies'){
+            $controller = new CompanyController($pdo);
+
+            if ($action === 'store') {
+              $controller->store();
+              exit;
+            } 
+            
+            elseif ($action === 'update') {
+              $controller->update((int)$_GET['id']); // ✅ manquant
+              exit;
+            } 
+            
+            elseif ($action === 'edit') {
+              $controller->edit((int)$_GET['id']); // ✅ manquant
+            } 
+            
+            elseif ($action === 'show') {
+              $controller->show((int)$_GET['id']);
+            } 
+            
+            elseif ($action === 'delete') {
+              $controller->delete((int)$_GET['id']);
+              exit;
+            } 
+            
+            else {
+              $controller->index(); // affiche la liste + formulaire (caché par défaut)
+            }
+          }
+          
+          else {
+            echo "<h2>Bienvenue sur le tableau de bord</h2>";
+            echo "<p>Ici, tu pourras gérer les utilisateurs, les offres et les entreprises.</p>";
+          }
         ?>
       </main>
 
     </div>
+
   </div>
 
   <script src="public/assets/js/admin.js"></script>

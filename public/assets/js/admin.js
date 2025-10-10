@@ -57,22 +57,38 @@ function toggleForm(btnId, formId, listId, titleId, textCreate, textBack) {
   }
 }
 
-// Initialisation pour les offres
-toggleForm(
-  'btnToggleCreate',
-  'formCreate',
-  'offersList',
-  'offersTitle',
-  '➕ Créer une nouvelle annonce',
-  '← Retour à la liste'
-);
+const urlParams = new URLSearchParams(window.location.search);
+const section = urlParams.get('section');
 
-// Initialisation pour les utilisateurs
-toggleForm(
-  'btnToggleUserCreate',
-  'formUserCreate',
-  'usersList',
-  'usersTitle',
-  '➕ Créer un nouvel utilisateur',
-  '← Retour à la liste'
-);
+if (section === 'offers') {
+  toggleForm(
+    'btnToggleCreate',
+    'formCreate',
+    'offersList',
+    'offersTitle',
+    '➕ Créer une nouvelle annonce',
+    '← Retour à la liste'
+  );
+}
+
+if (section === 'users') {
+  toggleForm(
+    'btnToggleUserCreate',
+    'formUserCreate',
+    'usersList',
+    'usersTitle',
+    '➕ Créer un nouvel utilisateur',
+    '← Retour à la liste'
+  );
+}
+
+if (section === 'companies') {
+  toggleForm(
+    'btnToggleCompaniesCreate',
+    'formCompaniesCreate',
+    'companiesList',
+    'companiesTitle',
+    '➕ Ajouter une entreprise',
+    '← Retour à la liste'
+  );
+}

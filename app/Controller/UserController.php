@@ -22,7 +22,7 @@
             include __DIR__ . '/../View/users/index.php';
         }
 
-            //Fonction pour le read
+        //Fonction pour le read
         public function show(int $id)
         {
             // 1. On récupère l’annonce par son id via le modèle
