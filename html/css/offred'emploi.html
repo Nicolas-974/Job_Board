@@ -19,15 +19,23 @@
       font-weight: bold;
     }
     .job-card button {
-      background-color: #222;
+      background-color: #020202;
       color: #fff;
       border: none;
       padding: 6px 14px;
-      border-radius: 4px;
+      border-radius: 8px;
     }
     .pagination .page-item.active .page-link {
       background-color: #222;
       border-color: #222;
+    }
+
+.search button {
+      background-color: #fdfdfd;
+      color: #000000;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px
     }
   </style>
 </head>
@@ -40,31 +48,59 @@
         <input type="text" class="form-control" placeholder="Search">
       </div>
       <div class="col-md-3">
-        <select class="form-select">
-          <option selected disabled>Sector</option>
-          <option>Sector 1</option>
-          <option>Sector 2</option>
-          <option>Sector 3</option>
-          <option>Sector 4</option>
+        <select class="form-select" required>
+          <option selected disabled>Secteur d'activité</option>
+          <option value="Informatique">Informatique / IT / Télécommunications</option>
+          <option value="Industrie">Industrie / Production / Fabrication</option>
+          <option value="Finance">Banque / Finance / Assurance</option>
+          <option value="Commerce">Commerce / Distribution / Vente</option>
+          <option value="Services">Services aux entreprises / Conseil</option>
+          <option value="Sante">Santé / Social / Médical</option>
+          <option value="BTP">BTP / Construction</option>
+          <option value="Transport">Transport / Logistique</option>
+          <option value="Restauration">Hôtellerie / Restauration / Tourisme</option>
+          <option value="Education">Éducation / Formation / Recherche</option>
+          <option value="Administration">Administration / Fonction Publique</option>
+          <option value="Art">Art / Culture / Communication</option>
+          <option value="Agriculture">Agriculture / Agroalimentaire</option>
+          <select class="form-select-custom">
         </select>
       </div>
       <div class="col-md-3">
-        <select class="form-select">
+        <select class="form-select" >
           <option selected disabled>Ville</option>
-          <option>Paris</option>
-          <option>Lyon</option>
-          <option>Marseille</option>
-        </select>
+              <option value="Saint-Denis">Saint-Denis (Chef-lieu)</option>
+              <option value="Saint-Pierre">Saint-Pierre</option>
+              <option value="Le Tampon">Le Tampon</option>
+              <option value="Saint-André">Saint-André</option>
+              <option value="Saint-Louis">Saint-Louis</option>
+              <option value="Saint-Benoît">Saint-Benoît</option>
+              <option value="Saint-Joseph">Saint-Joseph</option>
+              <option value="La Possession">La Possession</option>
+              <option value="Sainte-Marie">Sainte-Marie</option>
+              <option value="Sainte-Suzanne">Sainte-Suzanne</option>
+              <option value="Bras-Panon">Bras-Panon</option>
+              <option value="Petite-Île">Petite-Île</option>
+              <option value="Les Avirons">Les Avirons</option>
+              <option value="Entre-Deux">Entre-Deux</option>
+              <option value="Cilaos">Cilaos</option>
+              <option value="Salazie">Salazie</option>
+              <option value="Mafate">Mafate</option>
+              <option value="Autres">Saint-Paul</option>
+              <option value="Saint-Paul">Autre...</option>
+            </select>
       </div>
       <div class="col-md-3">
         <select class="form-select">
           <option selected disabled>Entreprise</option>
-          <option>Entreprise A</option>
-          <option>Entreprise B</option>
-          <option>Entreprise C</option>
+          <option></option>
+          <option></option>
+          <option></option>
         </select>
       </div>
-    </div>
+      <div class="search button">
+        <button>Rechercher</button>    
+      </div>
   </div>
 
   <!-- Titre -->
