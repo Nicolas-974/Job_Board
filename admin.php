@@ -6,6 +6,8 @@ require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/app/Controller/AdvertisementController.php';
 require_once __DIR__ . '/app/Controller/UserController.php';
 require_once __DIR__ . '/app/Controller/CompanyController.php';
+require_once __DIR__ . '/app/Controller/JobController.php';
+
 
 
 
@@ -18,44 +20,10 @@ $action = $_GET['action'] ?? null;
 <head>
   <meta charset="UTF-8">
   <title>Page Admin - Job Board</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="public/css/style.css">
   <!-- Lien vers Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      background-color: #343a40;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-    .sidebar {
-      background-color: #f8f9fa;
-      min-height: calc(100vh - 60px); /* hauteur totale - header */
-      padding: 20px;
-      border-right: 1px solid #ddd;
-    }
-    .sidebar h5 {
-      margin-bottom: 20px;
-    }
-    .sidebar a {
-      display: block;
-      padding: 10px;
-      margin-bottom: 10px;
-      color: #333;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    .sidebar a:hover {
-      background-color: #e9ecef;
-    }
-    main {
-      padding: 20px;
-    }
-  </style>
+
 </head>
 <body>
 
@@ -75,6 +43,7 @@ $action = $_GET['action'] ?? null;
         <a href="admin.php?section=users">Utilisateurs</a>
         <a href="admin.php?section=offers">Offres</a>
         <a href="admin.php?section=companies">Entreprises</a>
+        <a href="admin.php?section=jobs">Candidatures</a>
       </nav>
 
       <!-- Zone centrale -->
@@ -150,6 +119,38 @@ $action = $_GET['action'] ?? null;
           //Sections Entreprises
           elseif ($section === 'companies'){
             $controller = new CompanyController($pdo);
+
+            if ($action === 'store') {
+              $controller->store();
+              exit;
+            } 
+            
+            elseif ($action === 'update') {
+              $controller->update((int)$_GET['id']); // ✅ manquant
+              exit;
+            } 
+            
+            elseif ($action === 'edit') {
+              $controller->edit((int)$_GET['id']); // ✅ manquant
+            } 
+            
+            elseif ($action === 'show') {
+              $controller->show((int)$_GET['id']);
+            } 
+            
+            elseif ($action === 'delete') {
+              $controller->delete((int)$_GET['id']);
+              exit;
+            } 
+            
+            else {
+              $controller->index(); // affiche la liste + formulaire (caché par défaut)
+            }
+          }
+
+          //Sections Candidature
+          elseif ($section === 'jobs'){
+            $controller = new JobController($pdo);
 
             if ($action === 'store') {
               $controller->store();

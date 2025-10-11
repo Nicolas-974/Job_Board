@@ -92,3 +92,14 @@ if (section === 'companies') {
     '← Retour à la liste'
   );
 }
+
+  if (section === 'jobs') {
+  toggleForm(
+    'btnToggleJobsCreate',
+    'formJobCreate',
+    'jobsList',
+    'jobsTitle',
+    '➕ Ajouter une candidature',
+    '← Retour à la liste'
+  );
+}
