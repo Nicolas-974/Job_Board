@@ -81,7 +81,7 @@ class UserController
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
         $confirmation = $_POST['confirmation'] ?? '';
-        $admin = 0; // par défaut, un candidat n’est pas admin
+        $admin = "user"; // par défaut, un candidat n’est pas admin
 
         // 1. Vérification des champs obligatoires
         if (!$name || !$email || !$password) {

@@ -1,4 +1,13 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] !== 'admin') {
+    header('Location: public/index.php?page=login');
+    exit;
+}
+
+
 // Connexion PDO
 require_once __DIR__ . '/config/config.php';
 
@@ -20,7 +29,7 @@ $action = $_GET['action'] ?? null;
 <head>
   <meta charset="UTF-8">
   <title>Page Admin - Job Board</title>
-  <link rel="stylesheet" type="text/css" media="screen" href="public/css/style.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="public/css/admin.css">
   <!-- Lien vers Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,7 +52,9 @@ $action = $_GET['action'] ?? null;
         <a href="admin.php?section=users">Utilisateurs</a>
         <a href="admin.php?section=offers">Offres</a>
         <a href="admin.php?section=companies">Entreprises</a>
-        <a href="admin.php?section=jobs">Candidatures</a>
+        <a href="admin.php?section=jobs">Candidatures</a><br><br>
+
+        <a href="public/index.php?page=logout" class="btn btn-danger">Se déconnecter</a>
       </nav>
 
       <!-- Zone centrale -->

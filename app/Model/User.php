@@ -55,50 +55,33 @@ class User
 
     public function insert(array $data): int
     {
-        $stmt = $this->pdo->prepare(
-            "INSERT INTO people (name, firstname, phone, address, email, admin, password) 
-         VALUES (:name, :firstname, :phone, :address, :email, :admin, :password)"
-        );
+        // ✅ On hash le mot de passe avant insertion
+        if (!empty($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
 
-        $stmt->execute([
-            'name' => $data['name'],
-            'firstname' => $data['firstname'],
-            'phone' => $data['phone'],
-            'address' => $data['address'],
-            'email' => $data['email'],
-            'admin' => $data['admin'],
-            'password' => $data['password']
-        ]);
+        $sql = "INSERT INTO people (name, firstname, phone, address, email, admin, password)
+            VALUES (:name, :firstname, :phone, :address, :email, :admin, :password)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
 
         return (int) $this->pdo->lastInsertId();
     }
-
     public function update(int $id, array $data): void
     {
-        $stmt = $this->pdo->prepare(
-            "UPDATE people SET 
-                    name = :name,
-                    firstname = :firstname,
-                    phone = :phone,
-                    address = :address,
-                    email = :email,
-                    admin = :admin,
-                    password = :password
-                WHERE people_id = :id"
-        );
+        // ✅ On hash le mot de passe seulement si un nouveau est fourni
+        if (!empty($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
 
-        $stmt->execute([
-            'id' => $id,
-            'name' => $data['name'],
-            'firstname' => $data['firstname'],
-            'phone' => $data['phone'],
-            'address' => $data['address'],
-            'email' => $data['email'],
-            'admin' => $data['admin'],
-            'password' => $data['password']
-        ]);
+        $sql = "UPDATE people 
+            SET name = :name, firstname = :firstname, phone = :phone, 
+                address = :address, email = :email, admin = :admin, password = :password
+            WHERE people_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $data['id'] = $id;
+        $stmt->execute($data);
     }
-
     public function delete(int $id): void
     {
         $stmt = $this->pdo->prepare("DELETE FROM people WHERE people_id = :id");
