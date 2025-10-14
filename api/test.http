@@ -1,0 +1,48 @@
+### GET - Liste des annonces
+GET http://localhost/Job_Board/api/index.php/advertisements
+Accept: application/json
+
+###
+
+### GET - Détail d'une annonce
+GET http://localhost/Job_Board/api/index.php/advertisements/1
+Accept: application/json
+
+###
+
+### POST - Créer une annonce
+POST http://localhost/Job_Board/api/index.php/advertisements
+Content-Type: application/json
+
+{
+  "title": "Développeur Full Stack",
+  "short_description": "Stage 6 mois",
+  "description": "Participation à des projets frontend + backend",
+  "location": "Paris",
+  "contract_type": "Stage",
+  "salary": 12000,
+  "company_id": 1
+}
+
+
+###
+
+### PUT - Modifier une annonce
+PUT http://localhost/Job_Board/api/index.php/advertisements/1
+Content-Type: application/json
+
+{
+  "title": "Développeur PHP confirmé",
+  "short_description": "Stage 6 mois avec encadrement",
+  "description": "Participation à des projets backend + mentorat",
+  "location": "Paris",
+  "contract_type": "Stage",
+  "salary": 14000,
+  "company_id": 1
+}
+
+###
+
+### DELETE - Supprimer une annonce
+DELETE http://localhost/Job_Board/api/index.php/advertisements/1
+Accept: application/json
