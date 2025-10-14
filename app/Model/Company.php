@@ -17,6 +17,27 @@ class Company
         return $stmt->fetchAll();
     }
 
+    // Récupérer une portion d'entreprises (pagination)
+    public function paginate(int $limit, int $offset): array
+    {
+        $sql = "SELECT * FROM companies ORDER BY company_id ASC LIMIT :limit OFFSET :offset";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    // Compter le nombre total d'entreprises
+    public function countAll(): int
+    {
+        $sql = "SELECT COUNT(*) as total FROM companies";
+        $stmt = $this->pdo->query($sql);
+        $row = $stmt->fetch();
+        return (int) $row['total'];
+    }
+
     public function find(int $id): ?array
     {
         $stmt = $this->pdo->prepare("SELECT * FROM companies WHERE company_id = :id");

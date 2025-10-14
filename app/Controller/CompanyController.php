@@ -16,7 +16,14 @@ class CompanyController
 
     public function index()
     {
-        $companies = $this->model->all();
+        $page = isset($_GET['page_num']) ? (int) $_GET['page_num'] : 1;
+        $limit = 10;
+        $offset = ($page - 1) * $limit;
+
+        $companies = $this->model->paginate($limit, $offset);
+        $total = $this->model->countAll();
+        $totalPages = ceil($total / $limit);
+
         include __DIR__ . '/../View/companies/index.php';
     }
 

@@ -59,6 +59,33 @@ class Advertisement
         return $stmt->fetchAll();
     }
 
+    // Récupérer une portion d'annonces (pagination)
+    public function paginate(int $limit, int $offset): array
+    {
+        $sql = "SELECT a.ad_id, a.title, a.location, a.contract_type, a.salary,
+                   c.name AS company_name
+            FROM advertisements a
+            JOIN companies c ON a.company_id = c.company_id
+            ORDER BY a.ad_id ASC
+            LIMIT :limit OFFSET :offset";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    // Compter le nombre total d'annonces
+    public function countAll(): int
+    {
+        $sql = "SELECT COUNT(*) as total FROM advertisements";
+        $stmt = $this->pdo->query($sql);
+        $row = $stmt->fetch();
+        return (int) $row['total'];
+    }
+
     public function update(int $id, array $data): void
     {
         $stmt = $this->pdo->prepare(

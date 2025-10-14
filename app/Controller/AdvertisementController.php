@@ -15,14 +15,20 @@ class AdvertisementController
     // Action "index" : liste toutes les annonces
     public function index()
     {
-        // 1. On récupère les annonces via le modèle
-        $ads = $this->model->all();
+        // Numéro de page (par défaut 1)
+        $page = isset($_GET['page_num']) ? (int) $_GET['page_num'] : 1;
+        $limit = 10; // nombre d’annonces par page
+        $offset = ($page - 1) * $limit;
 
-        // 2. On récupère aussi les entreprises pour le formulaire
+        // Récupération des annonces paginées
+        $ads = $this->model->paginate($limit, $offset);
+        $total = $this->model->countAll();
+        $totalPages = ceil($total / $limit);
+
+        // Récupération des entreprises pour le formulaire
         $companies = $this->model->getCompanies();
 
-
-        // 2. On charge la vue correspondante
+        // On charge la vue correspondante
         include __DIR__ . '/../View/advertisements/index.php';
     }
 

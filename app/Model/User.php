@@ -29,6 +29,27 @@ class User
         // return $users;
     }
 
+    // Récupérer une portion d'utilisateurs (pagination)
+    public function paginate(int $limit, int $offset): array
+    {
+        $sql = "SELECT * FROM people ORDER BY people_id ASC LIMIT :limit OFFSET :offset";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    // Compter le nombre total d'utilisateurs
+    public function countAll(): int
+    {
+        $sql = "SELECT COUNT(*) as total FROM people";
+        $stmt = $this->pdo->query($sql);
+        $row = $stmt->fetch();
+        return (int) $row['total'];
+    }
+
     // Récupérer un utilisateur par son ID
     public function find(int $id): ?array
     {
