@@ -1,0 +1,59 @@
+body {
+    background-color: #fff;
+}
+
+/* Contrôles du carrousel: positionnés en dehors du contenu pour éviter le chevauchement */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 3rem;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 2rem 2rem;
+    filter: invert(1);
+    /* rend les icônes visibles sur fond clair */
+}
+
+/* Espacement interne pour éviter que les contrôles ne recouvrent les cartes */
+.carousel-inner {
+    padding: 0 2.5rem;
+    /* espace à gauche/droite */
+}
+
+/* Stabilisation de la hauteur pour éviter les chevauchements */
+.carousel-item {
+    min-height: 220px;
+    /* assure une hauteur minimale */
+}
+
+.card {
+    height: 100%;
+}
+
+/* Section entreprises: images alignées proprement */
+.companies-slide {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.companies-slide img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Indicateurs plus visibles */
+.carousel-indicators [data-bs-target] {
+    background-color: #000;
+}
+
+/* Optionnel: style du header */
+.navbar-brand {
+    letter-spacing: 0.5px;
+}

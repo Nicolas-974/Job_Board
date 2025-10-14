@@ -1,0 +1,30 @@
+body {
+    background-color: #f8f9fa;
+}
+
+header {
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logout-icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.job-card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.job-card .card-body {
+    padding: 20px;
+}
+
+.job-card .btn {
+    margin-top: 10px;
+}

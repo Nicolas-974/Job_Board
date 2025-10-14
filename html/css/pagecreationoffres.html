@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des Offres</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="pagecreationoffres.css">
+  <style>
+    body {
+  background-color: #d7cccc;
+}
+
+h3 {
+  font-weight: bold;
+  color: #333;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+form label {
+  font-weight: 500;
+}
+
+form .form-control,
+form .form-select {
+  border-radius: 6px;
+}
+
+.btn-dark {
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+  <div class="container py-4">
+    <!-- Liste des Offres -->
+    <section class="mb-5">
+      <h3 class="mb-3">Liste des offres existantes</h3>
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Titres Postes</th>
+            <th>Date</th>
+            <th>Candidature</th>
+            <th>Modifier</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Développeur</td>
+            <td>01/10</td>
+            <td><span class="badge bg-success">Ouverte</span></td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-2">✏️</button>
+              <button class="btn btn-sm btn-outline-danger">🗑️</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Designer UX</td>
+            <td>28/09</td>
+            <td><span class="badge bg-secondary">Fermé</span></td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-2">✏️</button>
+              <button class="btn btn-sm btn-outline-danger">🗑️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Formulaire de création -->
+    <section>
+      <h3 class="mb-3">Formulaire de création</h3>
+      <form>
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre de poste :</label>
+          <input type="text" class="form-control" id="titre" required>
+        </div>
+        <div class="mb-3">
+          <label for="localisation" class="form-label">Localisation :</label>
+          <input type="text" class="form-control" id="localisation" required>
+        </div>
+        <div class="mb-3">
+          <label for="ville" class="form-label">Ville :</label>
+          <input type="text" class="form-control" id="ville" required>
+        </div>
+        <div class="mb-3">
+          <label for="secteur" class="form-label">Secteur :</label>
+          <select class="form-select" id="secteur" required>
+            <option selected disabled>Secteur</option>
+            <option value="informatique">Informatique</option>
+            <option value="marketing">Marketing</option>
+            <option value="finance">Finance</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="contrat" class="form-label">Type de Contrat :</label>
+          <select class="form-select" id="contrat" required>
+            <option selected disabled>Type</option>
+            <option value="CDD">CDD</option>
+            <option value="CDI">CDI</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description courte :</label>
+          <input type="text" class="form-control" id="description">
+        </div>
+        <div class="mb-3">
+          <label for="details" class="form-label">Détails :</label>
+          <textarea class="form-control" id="details" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Publier</button>
+      </form>
+    </section>
+  </div>
+</body>
+</html>
