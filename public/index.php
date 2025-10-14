@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+ob_start();
 require_once __DIR__ . '/../app/Controller/UserController.php';
 require_once __DIR__ . '/../config/config.php'; // ton fichier de connexion PDO
 $controller = new UserController($pdo);

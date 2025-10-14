@@ -3,12 +3,12 @@
         <!-- Header -->
         <header class="d-flex justify-content-between align-items-center mb-4">
             <div class="logo">
-                <h2>Bienvenue <?= htmlspecialchars($_SESSION['company']['name']) ?>
+                <h2>Bienvenue <?= htmlspecialchars($_SESSION['user']['name']) ?>
                 </h2>
             </div>
 
             <?php if (isset($_SESSION['user'])): ?>
-                <a href="index.php" class="btn btn-outline-danger">Se déconnecter</a>
+                <a href="index.php?page=logout" class="btn btn-outline-danger">Se déconnecter</a>
             <?php endif; ?>
             <!-- <div class="logout-icon">⤴️</div> -->
         </header>
