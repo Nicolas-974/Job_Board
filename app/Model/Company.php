@@ -48,6 +48,14 @@ class Company
         return $company ?: null;
     }
 
+    public function findByEmail(string $email): ?array
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM companies WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        $company = $stmt->fetch();
+        return $company ?: null;
+    }
+
     public function insert(array $data): int
     {
         $stmt = $this->pdo->prepare(

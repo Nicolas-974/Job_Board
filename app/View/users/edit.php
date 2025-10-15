@@ -35,8 +35,9 @@
   <div class="col-md-6">
     <label for="admin" class="form-label">Rôle :</label>
     <select id="admin" name="admin" class="form-select">
-      <option value="0" <?= $user['admin'] == 0 ? 'selected' : '' ?>>Utilisateur</option>
-      <option value="1" <?= $user['admin'] == 1 ? 'selected' : '' ?>>Administrateur</option>
+      <option value="user" <?= $user['admin'] == "user" ? 'selected' : '' ?>>Utilisateur</option>
+      <option value="company" <?= $user['admin'] == "company" ? 'selected' : '' ?>>Companie</option>
+      <option value="admin" <?= $user['admin'] == "admin" ? 'selected' : '' ?>>Administrateur</option>
     </select>
   </div>
 

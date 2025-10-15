@@ -35,8 +35,8 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="index.php?page=home">Accueil</a></li>
-          <!-- <li class="nav-item"><a class="nav-link" href="#">Solutions</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Communauté</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php?page=offres">Offres</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="#">Communauté</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Ressources</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Tarifs</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Contact</a></li> -->
