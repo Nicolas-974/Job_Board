@@ -36,6 +36,9 @@ switch ($page) {
                         break;
 
                     case 'user':
+                        header('Location: index.php?page=profil_user');
+                        break;
+                        
                     default:
                         header('Location: index.php?page=profil_user');
                         break;
@@ -93,6 +96,4 @@ switch ($page) {
         break;
 }
 
-// On inclut le footer commun
-// include __DIR__ . '/../views/footer.php';
 
