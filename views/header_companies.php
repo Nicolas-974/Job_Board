@@ -10,8 +10,3 @@
 </head>
 
 <body>
-  <div class="container mt-3 text-end">
-    <?php if (isset($_SESSION['company'])): ?>
-      <a href="index.php" class="btn btn-outline-danger">Se déconnecter</a>
-    <?php endif; ?>
-  </div>

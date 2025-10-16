@@ -16,7 +16,14 @@ class CompanyController
 
     public function index()
     {
-        $companies = $this->model->all();
+        $page = isset($_GET['page_num']) ? (int) $_GET['page_num'] : 1;
+        $limit = 10;
+        $offset = ($page - 1) * $limit;
+
+        $companies = $this->model->paginate($limit, $offset);
+        $total = $this->model->countAll();
+        $totalPages = ceil($total / $limit);
+
         include __DIR__ . '/../View/companies/index.php';
     }
 
@@ -62,15 +69,14 @@ class CompanyController
         $userModel = new User($this->pdo);
 
         // Récupération des données du formulaire
-        $lastname = $_POST['name'] ?? '';        // ⚠️ ici "name" = nom du représentant
+        $lastname = $_POST['name'] ?? '';        // nom du représentant
         $firstname = $_POST['firstname'] ?? '';
         $email = $_POST['email'] ?? '';
         $phone = $_POST['phone'] ?? '';
         $password = $_POST['password'] ?? '';
-        $confirm = $_POST['confirmation'] ?? ''; // ⚠️ correspond à ton input "confirmation"
+        $confirm = $_POST['confirmation'] ?? '';
 
         $companyName = $_POST['company_name'] ?? ($_POST['name'] ?? '');
-        // ⚠️ si tu n’as pas de champ "company_name", on réutilise "name" pour l’entreprise
         $sector = $_POST['sector'] ?? '';
         $location = $_POST['location'] ?? '';
 
@@ -85,10 +91,7 @@ class CompanyController
             return;
         }
 
-        // Hash du mot de passe
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        // 1. Insertion dans people
+        // ⚠️ On NE hash plus ici : User::insert() s'en charge
         $userId = $userModel->insert([
             'name' => $lastname,
             'firstname' => $firstname,
@@ -96,11 +99,11 @@ class CompanyController
             'address' => $location,
             'email' => $email,
             'admin' => 'company',
-            'password' => $hashedPassword
+            'password' => $password // mot de passe en clair → hashé dans User::insert()
         ]);
 
-        // 2. Insertion dans companies
-        $companyId = $this->model->insert([
+        // Insertion dans companies
+        $this->model->insert([
             'name' => $companyName,
             'sector' => $sector,
             'location' => $location,
@@ -108,9 +111,9 @@ class CompanyController
             'phone' => $phone
         ]);
 
-        // 3. Récupération et mise en session
-        $company = $this->model->find($companyId);
-        $_SESSION['company'] = $company;
+        // Mise en session de l’utilisateur
+        $user = $userModel->find($userId);
+        $_SESSION['user'] = $user;
 
         // Redirection vers le profil entreprise
         header('Location: index.php?page=profil_companies');

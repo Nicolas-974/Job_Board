@@ -42,8 +42,10 @@
   <div class="col-md-6">
     <label for="admin" class="form-label">Rôle :</label>
     <select id="admin" name="admin" class="form-select">
-      <option value="0">Utilisateur</option>
-      <option value="1">Administrateur</option>
+
+      <option value="user">Utilisateur</option>
+      <option value="company">Companie</option>
+      <option value="admin">Administrateur</option>
     </select>
   </div>
 

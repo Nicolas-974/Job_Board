@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+ob_start();
 require_once __DIR__ . '/../app/Controller/UserController.php';
 require_once __DIR__ . '/../config/config.php'; // ton fichier de connexion PDO
 $controller = new UserController($pdo);
@@ -36,11 +37,8 @@ switch ($page) {
                         break;
 
                     case 'user':
-                        header('Location: index.php?page=profil_user');
-                        break;
-                        
                     default:
-                        header('Location: index.php?page=profil_user');
+                        header('Location: index.php?page=offres');
                         break;
                 }
 
@@ -69,13 +67,62 @@ switch ($page) {
         break;
 
     case 'profil_user':
+
+        // Protection d'accès
+        if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] !== 'user') {
+            header('Location: index.php?page=login');
+            exit;
+        }
+
         include __DIR__ . '/../views/header_profil.php';
         include __DIR__ . '/../views/profil_user.php';
         break;
 
     case 'profil_companies':
+        // Protection d'accès
+        if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] !== 'company') {
+            header('Location: index.php?page=login');
+            exit;
+        }
+
+        require_once __DIR__ . '/../app/Model/Company.php';
+        require_once __DIR__ . '/../app/Model/Advertisement.php'; // <-- manquait ici
+
+        $companyModel = new Company($pdo);
+        $adModel = new Advertisement($pdo);
+
+        // Récupération de l'entreprise via l'email du user en session
+        $company = $companyModel->findByEmail($_SESSION['user']['email']);
+
+        // Récupération des annonces
+        $ads = [];
+        if ($company && isset($company['company_id'])) {
+            $ads = $adModel->findByCompanyId((int) $company['company_id']);
+        }
+
         include __DIR__ . '/../views/header_companies.php';
         include __DIR__ . '/../views/profil_companies.php';
+        break;
+
+
+    case 'ad_show':
+        require_once __DIR__ . '/../app/Model/Advertisement.php';
+        $adModel = new Advertisement($pdo);
+        $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+        $ad = null;
+        if ($id > 0) {
+            // À écrire: find($id) dans Advertisement
+            $ad = $adModel->find($id);
+        }
+        include __DIR__ . '/../views/header_companies.php';
+        include __DIR__ . '/../views/ad_show.php';
+        break;
+
+    case 'offres':
+        require_once __DIR__ . '/../app/Controller/AdvertisementController.php';
+        $adController = new AdvertisementController($pdo);
+        $adController->offres();
+
         break;
 
     case 'logout':
@@ -96,4 +143,6 @@ switch ($page) {
         break;
 }
 
+// On inclut le footer commun
+// include __DIR__ . '/../views/footer.php';
 

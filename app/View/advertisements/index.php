@@ -1,4 +1,4 @@
-<h1 id = "offersTitle" class="mb-4">Liste des annonces</h1>
+<h1 id="offersTitle" class="mb-4">Liste des annonces</h1>
 
 <!-- Bouton qui bascule l'affichage -->
 <p>
@@ -35,15 +35,29 @@
           <td><?= htmlspecialchars($ad['salary']) ?> €</td>
           <td>
             <a href="admin.php?section=offers&action=show&id=<?= $ad['ad_id'] ?>" class="btn btn-sm btn-info">Voir</a>
-            <a href="admin.php?section=offers&action=edit&id=<?= $ad['ad_id'] ?>" class="btn btn-sm btn-warning">Modifier</a>
-            <a href="admin.php?section=offers&action=delete&id=<?= $ad['ad_id'] ?>"
-               class="btn btn-sm btn-danger"
-               onclick="return confirm('Voulez-vous vraiment supprimer cette annonce ?');">
-               Supprimer
+            <a href="admin.php?section=offers&action=edit&id=<?= $ad['ad_id'] ?>"
+              class="btn btn-sm btn-warning">Modifier</a>
+            <a href="admin.php?section=offers&action=delete&id=<?= $ad['ad_id'] ?>" class="btn btn-sm btn-danger"
+              onclick="return confirm('Voulez-vous vraiment supprimer cette annonce ?');">
+              Supprimer
             </a>
           </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
   </table>
+
+  <!-- Pagination -->
+  <nav>
+    <ul class="pagination">
+      <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+        <li class="page-item <?= ($i === $page) ? 'active' : '' ?>">
+          <a class="page-link" href="admin.php?section=offers&page_num=<?= $i ?>">
+            <?= $i ?>
+          </a>
+        </li>
+      <?php endfor; ?>
+    </ul>
+  </nav>
+
 </div>

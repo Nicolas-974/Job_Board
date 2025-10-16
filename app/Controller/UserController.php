@@ -12,16 +12,21 @@ class UserController
         $this->model = new User($pdo);
     }
 
-    // Action "index" : liste tous les utilisateurs
     public function index()
     {
-        // 1. On récupère les utilisateurs via le modèle
-        $users = $this->model->all();
+        // Numéro de page (par défaut 1)
+        $page = isset($_GET['page_num']) ? (int) $_GET['page_num'] : 1;
+        $limit = 10; // nombre d’utilisateurs par page
+        $offset = ($page - 1) * $limit;
 
-        // 2. On charge la vue correspondante
+        // Récupération des données
+        $users = $this->model->paginate($limit, $offset);
+        $total = $this->model->countAll();
+        $totalPages = ceil($total / $limit);
+
+        // On charge la vue
         include __DIR__ . '/../View/users/index.php';
     }
-
     //Fonction pour le read
     public function show(int $id)
     {

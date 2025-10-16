@@ -6,7 +6,7 @@
 // --------------------
 if ($method === "GET" && count($parts) === 1) {
     $stmt = $pdo->query("
-        SELECT a.ad_id, a.title, a.short_description, a.description, a.location, a.contract_type, a.salary, a.posted_date,
+        SELECT a.ad_id, a.title, a.short_description, a.description, a.location, a.contract_type, a.salary, a.posted_date, a.company_id,
                c.name AS company_name
         FROM advertisements a
         JOIN companies c ON a.company_id = c.company_id
@@ -27,7 +27,7 @@ if ($method === "GET" && count($parts) === 1) {
 if ($method === "GET" && count($parts) === 2 && is_numeric($parts[1])) {
     $id = (int) $parts[1];
     $stmt = $pdo->prepare("
-        SELECT a.ad_id, a.title, a.short_description, a.description, a.location, a.contract_type, a.salary, a.posted_date,
+        SELECT a.ad_id, a.title, a.short_description, a.description, a.location, a.contract_type, a.salary, a.posted_date, a.company_id, 
                c.name AS company_name, c.sector AS company_sector, c.location AS company_location
         FROM advertisements a
         JOIN companies c ON a.company_id = c.company_id
