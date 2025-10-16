@@ -43,11 +43,11 @@
               class="form-control-plaintext border-0 bg-transparent" style="width:150px;">
           </td>
           <td>
-            <a href="admin.php?section=users&action=show&id=<?= $user['people_id'] ?>"
+            <a href="index.php?page=admin&section=users&action=show&id=<?= $user['people_id'] ?>"
               class="btn btn-sm btn-info">Voir</a>
-            <a href="admin.php?section=users&action=edit&id=<?= $user['people_id'] ?>"
+            <a href="index.php?page=admin&section=users&action=edit&id=<?= $user['people_id'] ?>"
               class="btn btn-sm btn-warning">Modifier</a>
-            <a href="admin.php?section=users&action=delete&id=<?= $user['people_id'] ?>" class="btn btn-sm btn-danger"
+            <a href="index.php?page=admin&section=users&action=delete&id=<?= $user['people_id'] ?>" class="btn btn-sm btn-danger"
               onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
               Supprimer
             </a>
@@ -62,7 +62,7 @@
     <ul class="pagination">
       <?php for ($i = 1; $i <= $totalPages; $i++): ?>
         <li class="page-item <?= ($i === $page) ? 'active' : '' ?>">
-          <a class="page-link" href="admin.php?section=users&page_num=<?= $i ?>">
+          <a class="page-link" href="index.php?page=admin&section=users&page_num=<?= $i ?>">
             <?= $i ?>
           </a>
         </li>

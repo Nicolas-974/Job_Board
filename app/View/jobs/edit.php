@@ -1,6 +1,6 @@
 <h2 class="mb-4">Modifier la candidature</h2>
 
-<form action="admin.php?section=jobs&action=update&id=<?= $job['job_id'] ?>" method="post" class="row g-3">
+<form action="index.php?page=admin&section=jobs&action=update&id=<?= $job['job_id'] ?>" method="post" class="row g-3">
 
   <!-- Sélection du candidat -->
   <div class="col-md-6">

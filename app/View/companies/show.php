@@ -11,5 +11,5 @@
 </div>
 
 <p class="mt-3">
-  <a href="admin.php?section=companies" class="btn btn-secondary">← Retour à la liste</a>
+  <a href="index.php?page=admin&section=companies" class="btn btn-secondary">← Retour à la liste</a>
 </p>

@@ -60,7 +60,7 @@ class CompanyController
             'phone' => $phone
         ]);
 
-        header('Location: admin.php?section=companies');
+        header('Location: index.php?page=admin&section=companies');
         exit;
     }
 
@@ -143,14 +143,14 @@ class CompanyController
 
         $this->model->update($id, $data);
 
-        header('Location: admin.php?section=companies');
+        header('Location: index.php?page=admin&section=companies');
         exit;
     }
 
     public function delete(int $id): void
     {
         $this->model->delete($id);
-        header('Location: admin.php?section=companies');
+        header('Location: index.php?page=admin&section=companies');
         exit;
     }
 }

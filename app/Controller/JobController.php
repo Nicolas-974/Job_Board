@@ -31,7 +31,12 @@ class JobController
         $total = $this->model->countAll();
         $totalPages = ceil($total / $limit);
 
+        // ✅ Ajout pour le formulaire dynamique
+        $users = $this->pdo->query("SELECT people_id, name, firstname FROM people ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
+        $ads = $this->pdo->query("SELECT ad_id, title FROM advertisements ORDER BY title")->fetchAll(PDO::FETCH_ASSOC);
+
         include __DIR__ . '/../View/jobs/index.php';
+
     }
     //Fonction pour le read
     public function show(int $id)
@@ -51,7 +56,6 @@ class JobController
 
     public function create()
     {
-
         include __DIR__ . '/../View/jobs/create.php';
     }
 
@@ -73,7 +77,7 @@ class JobController
             'date_candidature' => $date
         ]);
 
-        header('Location: admin.php?section=jobs');
+        header('Location: index.php?page=admin&section=jobs');
         exit;
     }
 
@@ -112,7 +116,7 @@ class JobController
             'date_candidature' => $date
         ]);
 
-        header('Location: admin.php?section=jobs');
+        header('Location: index.php?page=admin&section=jobs');
         exit;
     }
 
@@ -121,7 +125,7 @@ class JobController
         $this->model->delete($id);
 
         // Après suppression, on revient à la liste
-        header('Location: admin.php?section=jobs');
+        header('Location: index.php?page=admin&section=jobs');
         exit;
     }
 

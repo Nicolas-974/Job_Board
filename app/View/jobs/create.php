@@ -1,15 +1,15 @@
 <h2 class="mb-4">Nouvelle candidature</h2>
 
-<form action="admin.php?section=jobs&action=store" method="post" class="row g-3">
+<form action="index.php?page=admin&section=jobs&action=store" method="post" class="row g-3">
 
   <!-- Sélection de l’utilisateur -->
   <div class="col-md-6">
     <label for="people_id" class="form-label">Candidat :</label>
     <select id="people_id" name="people_id" class="form-select" required>
       <option value="">-- Sélectionner un candidat --</option>
-      <?php foreach ($users as $user): ?>
-        <option value="<?= $user['people_id'] ?>">
-          <?= htmlspecialchars($user['firstname'] . ' ' . $user['name']) ?>
+      <?php foreach ($users as $u): ?>
+        <option value="<?= $u['people_id'] ?>">
+          <?= htmlspecialchars($u['firstname'] . ' ' . $u['name']) ?>
         </option>
       <?php endforeach; ?>
     </select>
@@ -20,9 +20,9 @@
     <label for="ad_id" class="form-label">Offre :</label>
     <select id="ad_id" name="ad_id" class="form-select" required>
       <option value="">-- Sélectionner une offre --</option>
-      <?php foreach ($ads as $ad): ?>
-        <option value="<?= $ad['ad_id'] ?>">
-          <?= htmlspecialchars($ad['title']) ?>
+      <?php foreach ($ads as $a): ?>
+        <option value="<?= $a['ad_id'] ?>">
+          <?= htmlspecialchars($a['title']) ?>
         </option>
       <?php endforeach; ?>
     </select>

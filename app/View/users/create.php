@@ -1,6 +1,6 @@
 <h2 class="mb-4">Créer un nouvel utilisateur</h2>
 
-<form action="admin.php?section=users&action=store" method="post" class="row g-3">
+<form action="index.php?page=admin&section=users&action=store" method="post" class="row g-3">
 
   <!-- Nom -->
   <div class="col-md-6">

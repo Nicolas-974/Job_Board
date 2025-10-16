@@ -1,6 +1,6 @@
 <h2 class="mb-4">Modifier l'utilisateur</h2>
 
-<form action="admin.php?section=users&action=update&id=<?= $user['people_id'] ?>" method="post" class="row g-3">
+<form action="index.php?page=admin&section=users&action=update&id=<?= $user['people_id'] ?>" method="post" class="row g-3">
 
   <div class="col-md-6">
     <label for="name" class="form-label">Nom :</label>

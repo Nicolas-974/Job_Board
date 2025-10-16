@@ -33,7 +33,7 @@ switch ($page) {
                         break;
 
                     case 'admin':
-                        header('Location: ../admin.php'); // ou index.php?page=admin si tu préfères
+                        header('Location: index.php?page=admin'); // ou index.php?page=admin si tu préfères
                         break;
 
                     case 'user':
@@ -121,7 +121,12 @@ switch ($page) {
     case 'offres':
         require_once __DIR__ . '/../app/Controller/AdvertisementController.php';
         $adController = new AdvertisementController($pdo);
-        $adController->offres();
+        $adController->offresAPI();
+
+        break;
+
+    case 'admin':
+        include __DIR__ . '/../views/admin.php';
 
         break;
 

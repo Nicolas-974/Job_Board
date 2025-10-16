@@ -1,6 +1,6 @@
 <h1>Modifier l’annonce</h1>
 
-<form action="index.php?action=update&id=<?= $ad['ad_id'] ?>" method="post">
+<form action="index.php?page=admin&section=offers&action=update&id=<?= $ad['ad_id'] ?>" method="post">
     <label for="title">Titre :</label><br>
     <input type="text" id="title" name="title" value="<?= htmlspecialchars($ad['title']) ?>" required><br><br>
 
@@ -34,4 +34,4 @@
     <button type="submit">Enregistrer les modifications</button>
 </form>
 
-<p><a href="admin.php?section=offers">← Retour à la liste</a></p>
+<p><a href="index.php?page=admin&section=offers">← Retour à la liste</a></p>

@@ -72,7 +72,7 @@ class UserController
             ]);
         }
 
-        header('Location: admin.php?section=users');
+        header('Location: index.php?page=admin&section=users');
         exit;
     }
 
@@ -161,7 +161,7 @@ class UserController
 
         $this->model->update($id, $data);
 
-        header('Location: admin.php?section=users');
+        header('Location: index.php?page=admin&section=users');
         exit;
     }
 
@@ -169,7 +169,7 @@ class UserController
     public function delete(int $id): void
     {
         $this->model->delete($id);
-        header('Location: admin.php?section=users');
+        header('Location: index.php?page=admin&section=users');
         exit;
     }
 

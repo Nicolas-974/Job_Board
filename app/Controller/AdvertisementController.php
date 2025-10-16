@@ -64,7 +64,7 @@ class AdvertisementController
         ]);
 
         // 3. On redirige vers la liste des annonces
-        header('Location: admin.php?section=offers');
+        header('Location: index.php?page=admin&section=offers');
         exit;
     }
 
@@ -123,7 +123,7 @@ class AdvertisementController
         ]);
 
         // 3. Rediriger vers la liste
-        header('Location: admin.php?section=offers');
+        header('Location: index.php?page=admin&section=offers');
         exit;
     }
 
@@ -132,32 +132,73 @@ class AdvertisementController
         $this->model->delete($id);
 
         // Après suppression, on revient à la liste
-        header('Location: admin.php?section=offers');
+        header('Location: index.php?page=admin&section=offers');
         exit;
     }
 
-    public function offres()
+    //Fonctions Offres fonctionnant avec SQL
+
+    // public function offres()
+    // {
+    //     $perPage = 6;
+    //     $page = isset($_GET['page_num']) && is_numeric($_GET['page_num']) ? (int) $_GET['page_num'] : 1;
+    //     $offset = ($page - 1) * $perPage;
+
+    //     $totalAds = $this->model->countAll();
+    //     $totalPages = ceil($totalAds / $perPage);
+
+    //     $ads = $this->model->paginateWithDetails($perPage, $offset);
+
+    //     // 🚀 Si c'est une requête AJAX (POST depuis fetch)
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_ad_id'])) {
+    //         $message = $this->apply($_POST);
+
+    //         // On renvoie du JSON au lieu de recharger la page
+    //         header('Content-Type: application/json');
+    //         echo json_encode(['message' => $message]);
+    //         exit;
+    //     }
+
+    //     // Sinon, affichage normal de la page
+    //     include __DIR__ . '/../../views/header_offres.php';
+    //     include __DIR__ . '/../../views/offres.php';
+    // }
+
+    public function offresAPI()
     {
         $perPage = 6;
         $page = isset($_GET['page_num']) && is_numeric($_GET['page_num']) ? (int) $_GET['page_num'] : 1;
-        $offset = ($page - 1) * $perPage;
-
-        $totalAds = $this->model->countAll();
-        $totalPages = ceil($totalAds / $perPage);
-
-        $ads = $this->model->paginateWithDetails($perPage, $offset);
 
         // 🚀 Si c'est une requête AJAX (POST depuis fetch)
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_ad_id'])) {
             $message = $this->apply($_POST);
 
-            // On renvoie du JSON au lieu de recharger la page
             header('Content-Type: application/json');
             echo json_encode(['message' => $message]);
             exit;
         }
 
-        // Sinon, affichage normal de la page
+        // 🔗 Sinon, appel à l’API pour récupérer les offres
+        $apiUrl = "http://localhost/Job_Board/api/index.php/advertisements";
+        $json = @file_get_contents($apiUrl);
+
+        if ($json === false) {
+            $ads = [];
+            $totalPages = 1;
+        } else {
+            $data = json_decode($json, true);
+            if ($data && $data['status'] === 'success') {
+                $ads = $data['data'];
+                $total = $data['count'];
+                $totalPages = ceil($total / $perPage);
+                $offset = ($page - 1) * $perPage;
+                $ads = array_slice($ads, $offset, $perPage);
+            } else {
+                $ads = [];
+                $totalPages = 1;
+            }
+        }
+
         include __DIR__ . '/../../views/header_offres.php';
         include __DIR__ . '/../../views/offres.php';
     }

@@ -1,6 +1,6 @@
 <h2 class="mb-4">Modifier l'entreprise</h2>
 
-<form action="admin.php?section=companies&action=update&id=<?= $company['company_id'] ?>" method="post" class="row g-3">
+<form action="index.php?page=admin&section=companies&action=update&id=<?= $company['company_id'] ?>" method="post" class="row g-3">
 
   <div class="col-md-6">
     <label for="name" class="form-label">Nom :</label>

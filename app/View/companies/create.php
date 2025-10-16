@@ -1,6 +1,6 @@
 <h2 class="mb-4">Ajouter une nouvelle entreprise</h2>
 
-<form action="admin.php?section=companies&action=store" method="post" class="row g-3">
+<form action="index.php?page=admin&section=companies&action=store" method="post" class="row g-3">
 
   <!-- Nom -->
   <div class="col-md-6">

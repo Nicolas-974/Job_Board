@@ -1,6 +1,6 @@
 <h2 class="mb-4">Créer une nouvelle annonce</h2>
 
-<form action="admin.php?section=offers&action=store" method="post" class="row g-3">
+<form action="index.php?page=admin&section=offers&action=store" method="post" class="row g-3">
 
   <!-- Titre -->
   <div class="col-md-6">

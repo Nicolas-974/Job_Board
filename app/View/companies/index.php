@@ -36,11 +36,11 @@
           <td><?= htmlspecialchars($company['phone']) ?></td>
           <td><?= htmlspecialchars($company['email']) ?></td>
           <td>
-            <a href="admin.php?section=companies&action=show&id=<?= $company['company_id'] ?>"
+            <a href="index.php?page=admin&section=companies&action=show&id=<?= $company['company_id'] ?>"
               class="btn btn-sm btn-info">Voir</a>
-            <a href="admin.php?section=companies&action=edit&id=<?= $company['company_id'] ?>"
+            <a href="index.php?page=admin&section=companies&action=edit&id=<?= $company['company_id'] ?>"
               class="btn btn-sm btn-warning">Modifier</a>
-            <a href="admin.php?section=companies&action=delete&id=<?= $company['company_id'] ?>"
+            <a href="index.php?page=admin&section=companies&action=delete&id=<?= $company['company_id'] ?>"
               class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer l\'entreprise ?');">
               Supprimer
             </a>
@@ -55,7 +55,7 @@
     <ul class="pagination">
       <?php for ($i = 1; $i <= $totalPages; $i++): ?>
         <li class="page-item <?= ($i === $page) ? 'active' : '' ?>">
-          <a class="page-link" href="admin.php?section=companies&page_num=<?= $i ?>">
+          <a class="page-link" href="index.php?page=admin&section=companies&page_num=<?= $i ?>">
             <?= $i ?>
           </a>
         </li>
