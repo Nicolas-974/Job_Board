@@ -123,8 +123,6 @@ switch ($page) {
         $adController = new AdvertisementController($pdo);
         $adController->offres();
 
-        include __DIR__ . '/../views/header_offres.php';
-        include __DIR__ . '/../views/offres.php';
         break;
 
     case 'logout':
