@@ -2,11 +2,6 @@
 
     <div class="card-center">
         <div class="card-body">
-            <div class="container mt-3 text-end">
-                <?php if (isset($_SESSION['user'])): ?>
-                    <a href="index.php?page=logout" class="btn btn-outline-danger">Se déconnecter</a>
-                <?php endif; ?>
-            </div>
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <div class="d-flex align-items-center gap-3">
                     <div class="avatar" id="avatarInitials"><?= strtoupper(($firstname[0] ?? '') . ($name[0] ?? 'U')) ?>

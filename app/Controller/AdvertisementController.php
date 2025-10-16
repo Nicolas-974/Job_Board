@@ -147,15 +147,20 @@ class AdvertisementController
 
         $ads = $this->model->paginateWithDetails($perPage, $offset);
 
-        $applyMessage = '';
+        // 🚀 Si c'est une requête AJAX (POST depuis fetch)
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_ad_id'])) {
-            $applyMessage = $this->apply($_POST);
+            $message = $this->apply($_POST);
+
+            // On renvoie du JSON au lieu de recharger la page
+            header('Content-Type: application/json');
+            echo json_encode(['message' => $message]);
+            exit;
         }
 
+        // Sinon, affichage normal de la page
         include __DIR__ . '/../../views/header_offres.php';
         include __DIR__ . '/../../views/offres.php';
     }
-
     private function apply(array $data): string
     {
         global $pdo; // réutilise la connexion

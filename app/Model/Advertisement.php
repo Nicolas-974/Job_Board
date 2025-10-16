@@ -101,7 +101,7 @@ class Advertisement
     public function paginateWithDetails(int $limit, int $offset): array
     {
         $sql = "SELECT a.ad_id, a.title, a.short_description, a.description,
-                   a.location, a.contract_type, a.salary, c.name AS company_name
+                   a.location, a.contract_type, a.salary, a.posted_date, c.name AS company_name
             FROM advertisements a
             JOIN companies c ON a.company_id = c.company_id
             ORDER BY a.ad_id DESC
