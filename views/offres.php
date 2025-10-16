@@ -1,5 +1,19 @@
 <div class="container py-5">
     <h2 class="mb-4 text-center">Dernières offres publiées</h2>
+    <form id="search-form" class="mb-4 search-center" onsubmit="return false;">
+        <div class="input-group" style="max-width: 600px;">
+            <select id="filterField" class="form-select" style="max-width: 160px;">
+                <option value="all">Tous</option>
+                <option value="title">Titre</option>
+                <option value="location">Lieu</option>
+                <option value="contract_type">Contrat</option>
+            </select>
+            <input id="search-input" type="search" name="q" class="form-control"
+                placeholder="Rechercher (titre, lieu, type de contrat)..." autocomplete="off"
+                value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
+            <button id="clear-search" class="btn btn-outline-danger" type="button">Effacer</button>
+        </div>
+    </form>
 
     <div class="row g-4">
         <?php if (!empty($ads)): ?>
